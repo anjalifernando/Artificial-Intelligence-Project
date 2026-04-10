@@ -2,7 +2,7 @@
 
 This file splits the ML project work into Person 1, Person 2, and Person 3.
 
-## Person 1: Data Setup + Model Architecture
+## Vicky : Data Setup + Model Architecture
 
 ### Own these sections
 - Environment setup and data loading
@@ -20,7 +20,7 @@ This file splits the ML project work into Person 1, Person 2, and Person 3.
 
 ---
 
-## Person 2: Training Loop
+## Aseel: Training Loop
 
 ### Own these sections
 - Optimizer setup (Adam, lr=0.001)
@@ -40,7 +40,7 @@ This file splits the ML project work into Person 1, Person 2, and Person 3.
 
 ---
 
-## Person 3: Evaluation + Save/Load + Reflection
+## Anjali: Evaluation + Save/Load + Reflection
 
 ### Own these sections
 - Test evaluation loop

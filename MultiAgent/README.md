@@ -2,7 +2,7 @@
 
 This file splits implementation and testing work into Person 1, Person 2, and Person 3.
 
-## Person 1: Reflex Agent (Q1-style)
+## Aseel: Reflex Agent (Q1-style)
 
 ### Own these sections
 - Improve ReflexAgent.evaluationFunction in multiagent/multiAgents.py
@@ -15,7 +15,7 @@ This file splits implementation and testing work into Person 1, Person 2, and Pe
 
 ---
 
-## Person 2: Minimax Agent (Q2)
+## Anjali: Minimax Agent (Q2)
 
 ### Own these sections
 - Implement MinimaxAgent.getAction in multiagent/multiAgents.py
@@ -30,7 +30,7 @@ This file splits implementation and testing work into Person 1, Person 2, and Pe
 
 ---
 
-## Person 3: Expectimax Agent (Q4) + Final Validation
+## Vicky: Expectimax Agent (Q4) + Final Validation
 
 ### Own these sections
 - Implement ExpectimaxAgent.getAction in multiagent/multiAgents.py
