@@ -43,9 +43,3 @@ This file splits implementation and testing work into Person 1, Person 2, and Pe
 - Final combined code runs and grading output is clean
 
 ---
-
-## Team Integration Workflow
-1. Person 1 finishes Reflex first and pushes/merges.
-2. Person 2 and Person 3 implement in parallel on separate branches.
-3. Final owner runs full autograder for required questions and resolves merge conflicts.
-4. Team does one final smoke test with game runs and saves final submission file.
