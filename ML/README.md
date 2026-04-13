@@ -69,11 +69,13 @@ After that, open `ML_Group_Project.ipynb` in VS Code, select the `.venv` kernel,
   - backward pass
   - optimizer step
 - Epoch logging format (loss + accuracy)
+- Prediction visualization batch fetch
 
 ### Deliverables
 - Training runs for all epochs
 - Loss decreases reasonably
 - Training accuracy prints every epoch
+- Prediction grid is shown correctly
 
 ---
 
@@ -82,7 +84,6 @@ After that, open `ML_Group_Project.ipynb` in VS Code, select the `.venv` kernel,
 ### Own these sections
 - Test evaluation loop
 - Test accuracy calculation
-- Prediction visualization batch fetch
 - Save model to digit_classifier.pth
 - Load saved model and verify accuracy
 - Confusion matrix computation
@@ -90,7 +91,7 @@ After that, open `ML_Group_Project.ipynb` in VS Code, select the `.venv` kernel,
 
 ### Deliverables
 - Test accuracy printed
-- Training curves and prediction grid shown
+- Training curves shown
 - Confusion matrix shown
 - Save/load verification completed
 - Reflection answers completed
