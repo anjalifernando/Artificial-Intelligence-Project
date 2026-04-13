@@ -2,6 +2,43 @@
 
 This file splits the ML project work into Person 1, Person 2, and Person 3.
 
+## How To Run
+
+### If You Want To Work In VS Code
+
+Create a virtual environment first, then install the dependencies.
+
+#### Windows
+
+```powershell
+python -m venv .venv
+.venv\Scripts\activate
+python -m pip install torch torchvision matplotlib scikit-learn numpy
+```
+
+#### Mac
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install torch torchvision matplotlib scikit-learn numpy
+```
+
+After that, open `ML_Group_Project.ipynb` in VS Code, select the `.venv` kernel, and run the notebook top to bottom.
+
+### If You Want To Work In Google Colab
+
+1. Open Google Colab.
+2. Upload `ML_Group_Project.ipynb` from the `ML` folder, or open it from Google Drive if you already copied it there.
+3. If needed, run the install command in the first code cell:
+
+```python
+!pip install torch torchvision matplotlib scikit-learn numpy
+```
+
+4. Run the notebook top to bottom.
+5. If you make changes, save a copy back to Github so the group can access it. (DONT CHANGE ANYTHING OUTSIDE OF "TODOS")
+
 ## Vicky : Data Setup + Model Architecture
 
 ### Own these sections
