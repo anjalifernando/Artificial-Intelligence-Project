@@ -1,45 +1,50 @@
 # MultiAgent Project Task Split (3 People)
 
-This file splits implementation and testing work into Person 1, Person 2, and Person 3.
+This file splits the Minimax and Expectimax work across three people so each person owns real algorithm code.
 
-## Aseel: Reflex Agent (Q1-style)
+## Aseel: Minimax Lead
 
 ### Own these sections
-- Improve ReflexAgent.evaluationFunction in multiagent/multiAgents.py
-- Tune feature scoring (food distance, ghost danger, scared ghosts, stop penalty)
-- Run local play tests on small layouts
+- Implement the Pacman max branch in `MinimaxAgent.getAction`
+- Choose the best root action from the minimax tree
+- Start the recursive minimax search from the current `GameState`
 
 ### Deliverables
-- Reflex behavior is clearly better than score-only baseline
-- Code is stable and does not crash in normal layouts
+- The root Pacman decision is produced by minimax
+- The agent returns a legal action from the best minimax branch
 
 ---
 
-## Anjali: Minimax Agent (Q2)
+## Anjali: Shared Depth and Leaf Logic
 
 ### Own these sections
-- Implement MinimaxAgent.getAction in multiagent/multiAgents.py
-- Correct turn order handling for Pacman and all ghosts
-- Correct depth handling per full ply
-- Handle terminal states and no-legal-action states
-- Validate with q2 tests/autograder
+- Handle full-ply depth counting in `MinimaxAgent`
+- Stop the search at the correct depth
+- Use `self.evaluationFunction` on leaf states
+- Apply the same depth and leaf rules in `ExpectimaxAgent`
 
 ### Deliverables
-- Q2 tests pass
-- Action choices are consistent with minimax expectations
+- Depth is counted as one Pacman move plus all ghost responses
+- Leaf evaluation is consistent in both search agents
 
 ---
 
-## Vicky: Expectimax Agent (Q4) + Final Validation
+## Vicky: Ghost Branches for Both Questions
 
 ### Own these sections
-- Implement ExpectimaxAgent.getAction in multiagent/multiAgents.py
-- Use uniform random ghost policy in expectation node
-- Validate with q4 tests/autograder
-- Run final end-to-end project validation and collect results
+- Implement the ghost min layers in `MinimaxAgent`
+- Cycle through multiple ghosts in order
+- Implement the chance-node logic in `ExpectimaxAgent`
+- Compute uniform random expected values for ghost actions
 
 ### Deliverables
-- Q4 tests pass
-- Final combined code runs and grading output is clean
+- Minimax correctly handles every ghost layer
+- Expectimax correctly averages over ghost actions
+- Both agents work for any number of ghosts
 
 ---
+
+## Team Integration Notes
+- Use the provided autograder commands for q2 and q4
+- Run local Pacman games to confirm the agents behave correctly
+- Merge the three parts into one `multiAgents.py` before submission
