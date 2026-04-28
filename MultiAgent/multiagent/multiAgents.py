@@ -107,36 +107,12 @@ class MultiAgentSearchAgent(Agent):
         self.depth = int(depth)
 
 class MinimaxAgent(MultiAgentSearchAgent):
-    """
-    Your minimax agent (question 2)
-    """
 
     def getAction(self, gameState: GameState):
-        """
-        Returns the minimax action from the current gameState using self.depth
-        and self.evaluationFunction.
-
-        Here are some method calls that might be useful when implementing minimax.
-
-        gameState.getLegalActions(agentIndex):
-        Returns a list of legal actions for an agent
-        agentIndex=0 means Pacman, ghosts are >= 1
-
-        gameState.generateSuccessor(agentIndex, action):
-        Returns the successor game state after an agent takes an action
-
-        gameState.getNumAgents():
-        Returns the total number of agents in the game
-
-        gameState.isWin():
-        Returns whether or not the game state is a winning state
-
-        gameState.isLose():
-        Returns whether or not the game state is a losing state
-        """
         numAgents = gameState.getNumAgents()
 
         def minimax(state, depth, agentIndex):
+            # Stop condition (YOUR RESPONSIBILITY)
             if state.isWin() or state.isLose() or depth == self.depth:
                 return self.evaluationFunction(state)
 
@@ -144,9 +120,10 @@ class MinimaxAgent(MultiAgentSearchAgent):
             if not legalActions:
                 return self.evaluationFunction(state)
 
+            # Next agent + depth logic (YOUR RESPONSIBILITY)
             nextAgent = agentIndex + 1
             nextDepth = depth
-            if nextAgent == numAgents:
+            if nextAgent >= numAgents:
                 nextAgent = 0
                 nextDepth += 1
 
@@ -155,23 +132,19 @@ class MinimaxAgent(MultiAgentSearchAgent):
                 successor = state.generateSuccessor(agentIndex, action)
                 values.append(minimax(successor, nextDepth, nextAgent))
 
+            # Pacman = max, Ghosts = min
             if agentIndex == 0:
                 return max(values)
-            return min(values)
+            else:
+                return min(values)
 
-        legalActions = gameState.getLegalActions(0)
-        if not legalActions:
-            return Directions.STOP
-
-        bestAction = legalActions[0]
+        # Root decision
+        bestAction = Directions.STOP
         bestValue = float('-inf')
 
-        for action in legalActions:
+        for action in gameState.getLegalActions(0):
             successor = gameState.generateSuccessor(0, action)
-            # CHANGE THIS LINE (line 123):
-            nextAgent = 1 % numAgents
-            nextDepth = 0 if nextAgent != 0 else 1
-            value = minimax(successor, nextDepth, nextAgent)
+            value = minimax(successor, 0, 1)
             if value > bestValue:
                 bestValue = value
                 bestAction = action
