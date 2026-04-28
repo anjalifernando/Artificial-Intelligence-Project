@@ -168,7 +168,10 @@ class MinimaxAgent(MultiAgentSearchAgent):
 
         for action in legalActions:
             successor = gameState.generateSuccessor(0, action)
-            value = minimax(successor, 0, 1 if numAgents > 1 else 0)
+            # CHANGE THIS LINE (line 123):
+            nextAgent = 1 % numAgents
+            nextDepth = 0 if nextAgent != 0 else 1
+            value = minimax(successor, nextDepth, nextAgent)
             if value > bestValue:
                 bestValue = value
                 bestAction = action
@@ -177,9 +180,9 @@ class MinimaxAgent(MultiAgentSearchAgent):
 
 class ExpectimaxAgent(MultiAgentSearchAgent):
     """
-      Your expectimax agent (question 4)
+    Your expectimax agent (question 4)
     """
-
+    
     def getAction(self, gameState: GameState):
         """
         Returns the expectimax action using self.depth and self.evaluationFunction
@@ -187,5 +190,48 @@ class ExpectimaxAgent(MultiAgentSearchAgent):
         All ghosts should be modeled as choosing uniformly at random from their
         legal moves.
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        numAgents = gameState.getNumAgents()
+
+        def expectimax(state, depth, agentIndex):
+            # Terminal state check
+            if state.isWin() or state.isLose() or depth == self.depth:
+                return self.evaluationFunction(state)
+
+            # Get legal actions for current agent
+            legalActions = state.getLegalActions(agentIndex)
+            if not legalActions:
+                return self.evaluationFunction(state)
+
+            # Calculate next agent and depth
+            nextAgent = agentIndex + 1
+            nextDepth = depth
+            if nextAgent >= numAgents:
+                nextAgent = 0
+                nextDepth += 1
+
+            # Recursively evaluate all actions
+            values = []
+            for action in legalActions:
+                successor = state.generateSuccessor(agentIndex, action)
+                values.append(expectimax(successor, nextDepth, nextAgent))
+
+            # Pacman (agent 0) maximizes, ghosts use expected value
+            if agentIndex == 0:
+                return max(values)
+            else:
+                # Ghosts: uniform random expected value
+                return sum(values) / len(values)
+
+        # Root level: Pacman chooses action
+        legalActions = gameState.getLegalActions(0)
+        bestAction = Directions.STOP
+        bestValue = float('-inf')
+
+        for action in legalActions:
+            successor = gameState.generateSuccessor(0, action)
+            value = expectimax(successor, 0, 1)  # Start with first ghost
+            if value > bestValue:
+                bestValue = value
+                bestAction = action
+
+        return bestAction
